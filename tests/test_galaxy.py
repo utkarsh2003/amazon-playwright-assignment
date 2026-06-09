@@ -34,8 +34,10 @@ def test_search_and_add_galaxy(page):
         # 5. Add the selected Galaxy device to the shopping cart
         product_page.add_to_cart()
     except Exception as e:
-        page.screenshot(path="galaxy_failure.png")
-        # Let's save HTML as well to analyze
-        with open("galaxy_failure.html", "w", encoding="utf-8") as f:
-            f.write(page.content())
+        try:
+            page.screenshot(path="galaxy_failure.png", timeout=5000)
+            with open("galaxy_failure.html", "w", encoding="utf-8") as f:
+                f.write(page.content())
+        except Exception:
+            pass
         raise e

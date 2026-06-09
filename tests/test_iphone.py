@@ -19,7 +19,7 @@ def test_search_and_add_iphone(page):
         home_page.navigate()
         
         # 2. Search for 'iPhone'
-        home_page.search_product("iPhone unlocked")
+        home_page.search_product("iPhone 16 unlocked")
         
         # 3. Select the first search result product
         search_results.click_first_product(required_keyword="iPhone")
@@ -34,8 +34,10 @@ def test_search_and_add_iphone(page):
         # 5. Add the selected iPhone to the shopping cart
         product_page.add_to_cart()
     except Exception as e:
-        page.screenshot(path="iphone_failure.png")
-        # Let's save HTML as well to analyze
-        with open("iphone_failure.html", "w", encoding="utf-8") as f:
-            f.write(page.content())
+        try:
+            page.screenshot(path="iphone_failure.png", timeout=5000)
+            with open("iphone_failure.html", "w", encoding="utf-8") as f:
+                f.write(page.content())
+        except Exception:
+            pass
         raise e
