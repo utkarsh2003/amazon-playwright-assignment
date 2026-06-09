@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*_failure.html
+*_failure.png
+playwright-report/
+test-results/
+.DS_Store
